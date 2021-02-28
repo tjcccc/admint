@@ -43,8 +43,21 @@
     component: './TableList',
   },
   {
+    name: 'list.playground',
+    path: '/playground',
+    icon: 'rocket',
+    access: 'canAdmin',
+    component: './Playground',
+  },
+  {
     path: '/',
     redirect: '/welcome',
+  },
+  {
+    name: 'list.accountsettings',
+    icon: 'smile',
+    path: '/accountsettings',
+    component: './AccountSettings',
   },
   {
     component: './404',

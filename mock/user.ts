@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import accounts from './accounts';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -42,7 +43,7 @@ export default {
       return;
     }
     res.send({
-      name: 'Serati Ma',
+      name: 'admin',
       avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
       userid: '00000001',
       email: 'antdesign@alipay.com',
@@ -117,40 +118,60 @@ export default {
   'POST /api/login/account': async (req: Request, res: Response) => {
     const { password, username, type } = req.body;
     await waitTime(2000);
-    if (password === 'ant.design' && username === 'admin') {
+
+    const account = accounts.find((a) => a.name === username);
+
+    if (account === undefined || account === null || account.password !== password) {
       res.send({
-        status: 'ok',
+        status: 'error',
         type,
-        currentAuthority: 'admin',
+        currentAuthority: 'guest',
       });
-      access = 'admin';
-      return;
-    }
-    if (password === 'ant.design' && username === 'user') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'user',
-      });
-      access = 'user';
-      return;
-    }
-    if (type === 'mobile') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
-      });
-      access = 'admin';
-      return;
+      access = 'guest';
     }
 
     res.send({
-      status: 'error',
+      status: 'ok',
       type,
-      currentAuthority: 'guest',
+      currentAuthority: 'admin',
     });
-    access = 'guest';
+    access = 'admin';
+    return;
+
+    // if (password === 'ant.design' && username === 'admin') {
+    //   res.send({
+    //     status: 'ok',
+    //     type,
+    //     currentAuthority: 'admin',
+    //   });
+    //   access = 'admin';
+    //   return;
+    // }
+    // if (password === 'ant.design' && username === 'user') {
+    //   res.send({
+    //     status: 'ok',
+    //     type,
+    //     currentAuthority: 'user',
+    //   });
+    //   access = 'user';
+    //   return;
+    // }
+    // if (type === 'mobile') {
+    //   res.send({
+    //     status: 'ok',
+    //     type,
+    //     currentAuthority: 'admin',
+    //   });
+    //   access = 'admin';
+    //   return;
+    // }
+
+    // res.send({
+    //   status: 'error',
+    //   type,
+    //   currentAuthority: 'guest',
+    // });
+    // access = 'guest';
   },
   'GET /api/login/outLogin': (req: Request, res: Response) => {
     access = '';

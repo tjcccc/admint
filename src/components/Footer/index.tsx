@@ -4,7 +4,7 @@ import { DefaultFooter } from '@ant-design/pro-layout';
 
 export default () => (
   <DefaultFooter
-    copyright="2020 蚂蚁集团体验技术部出品"
+    copyright="seesaw game 2021, powered by Ant Design Pro"
     links={[
       {
         key: 'Ant Design Pro',
@@ -15,7 +15,7 @@ export default () => (
       {
         key: 'github',
         title: <GithubOutlined />,
-        href: 'https://github.com/ant-design/ant-design-pro',
+        href: 'https://github.com/tjcccc/admint',
         blankTarget: true,
       },
       {

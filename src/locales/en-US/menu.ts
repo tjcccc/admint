@@ -49,4 +49,8 @@ export default {
   'menu.editor.flow': 'Flow Editor',
   'menu.editor.mind': 'Mind Editor',
   'menu.editor.koni': 'Koni Editor',
+
+  // custom
+  'menu.list.playground': 'Playground',
+  'menu.list.accountsettings': 'Account',
 };
